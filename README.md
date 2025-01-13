@@ -1,6 +1,11 @@
 # EmployeeManagement
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.16.
+Implemented state management with Ngrx
+Used d3.js to form org-chart with below feature - 
+- Zoom In/Out
+- Collapse/ Expand
+- Dynamic graph generation
 
 ## Development server
 
