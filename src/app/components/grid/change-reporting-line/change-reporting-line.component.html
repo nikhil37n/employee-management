@@ -1,0 +1,28 @@
+<form [formGroup]="changeReportingLineForm">
+  <div class="mb10">
+    <clr-input-container>
+      <label for="empName">Employee Name</label>
+      <input
+        class="pointer-events-none"
+        clrInput
+        type="text"
+        id="empName"
+        name="empName"
+        formControlName="empName"
+      />
+    </clr-input-container>
+  </div>
+
+  <div class="mb10">
+    <clr-select-container>
+      <label for="manager">Manager Name</label>
+      <select clrSelect id="manager" name="manager" formControlName="manager">
+        <option value="" disabled>Select New Reporting Manager</option>
+        <option *ngFor="let manager of managers" [value]="manager">
+          {{ manager }}
+        </option>
+      </select>
+      <clr-control-error>Select valid Manager!</clr-control-error>
+    </clr-select-container>
+  </div>
+</form>

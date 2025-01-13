@@ -1,0 +1,162 @@
+[
+  {
+    "empId": 42654,
+    "empName": "John Doe",
+    "designation": "Chief Executive Officer (CEO)",
+    "email": "john.doe@gmail.com",
+    "phone": 7656765434,
+    "manager": "-"
+  },
+  {
+    "empId": 74892,
+    "empName": "Sarah Lee",
+    "designation": "Head of Engineering",
+    "email": "sarah.lee@gmail.com",
+    "phone": 9097676545,
+    "manager": "John Doe (42654)"
+  },
+  {
+    "empId": 79719,
+    "empName": "Michael Brown",
+    "designation": "Head of Sales",
+    "email": "michael.brown@gmail.com",
+    "phone": 9876765656,
+    "manager": "John Doe (42654)"
+  },
+  {
+    "empId": 82285,
+    "empName": "Emily Davis",
+    "designation": "Head of Marketing",
+    "email": "emily.davis@gmail.com",
+    "phone": 9421324356,
+    "manager": "John Doe (42654)"
+  },
+  {
+    "empId": 73542,
+    "empName": "James Carter",
+    "designation": "Engineering Manager",
+    "email": "james.carter@gmail.com",
+    "phone": 9439876765,
+    "manager": "John Doe (42654)"
+  },
+  {
+    "empId": 47470,
+    "empName": "Letisha Won",
+    "designation": "Product UX Designer",
+    "email": "letisha.won@gmail.com",
+    "phone": 9435654524,
+    "manager": "John Doe (42654)"
+  },
+  {
+    "empId": 35306,
+    "empName": "Beverly Chappel",
+    "designation": "Engineering Manager",
+    "email": "beverly.chappel@gmail.com",
+    "phone": 9643454323,
+    "manager": "John Doe (42654)"
+  },
+  {
+    "empId": 26398,
+    "empName": "Brynn Watt",
+    "designation": "DevOps Manager",
+    "email": "brynn.watt@gmail.com",
+    "phone": 8097675654,
+    "manager": "John Doe (42654)"
+  },
+  {
+    "empId": 12312,
+    "empName": "Brynn Haris",
+    "designation": "Sales Executive",
+    "email": "brynn.haris@gmail.com",
+    "phone": 9087654565,
+    "manager": "Michael Brown (79719)"
+  },
+  {
+    "empId": 87400,
+    "empName": "Sibyl Paul",
+    "designation": "Senior Member of Technical Staff",
+    "email": "sibyl.paul@gmail.com",
+    "phone": 9098765432,
+    "manager": "Brynn Watt (26398)"
+  },
+  {
+    "empId": 71818,
+    "empName": "Genoveva Latinga",
+    "designation": "Senior Member of Technical Staff",
+    "email": "genoveva.latinga@gmail.com",
+    "phone": 9098787654,
+    "manager": "Beverly Chappel (35306)"
+  },
+  {
+    "empId": 38913,
+    "empName": "Nempidia Jones",
+    "designation": "Senior Member of Technical Staff",
+    "email": "nempidia.jones@gmail.com",
+    "phone": 7456475632,
+    "manager": "James Carter (73542)"
+  },
+  {
+    "empId": 39077,
+    "empName": "Lottie Lyon",
+    "designation": "Member of Technical Staff-3",
+    "email": "lottie.lyon@gmail.com",
+    "phone": 9765432123,
+    "manager": "Nempidia Jones (38913)"
+  },
+  {
+    "empId": 31214,
+    "empName": "Brad Pitt",
+    "designation": "Member of Technical Staff-3",
+    "email": "brad.pitt@gmail.com",
+    "phone": 9787654438,
+    "manager": "Nempidia Jones (38913)"
+  },
+  {
+    "empId": 46698,
+    "empName": "Johnson Jacob",
+    "designation": "Member of Technical Staff-2",
+    "email": "johnson.jacob@gmail.com",
+    "phone": 8076565456,
+    "manager": "Sibyl Paul (87400)"
+  },
+  {
+    "empId": 44699,
+    "empName": "Genoveva Butler",
+    "designation": "Member of Technical Staff-2",
+    "email": "genoveva.butler@gmail.com",
+    "phone": 8098767654,
+    "manager": "Sibyl Paul (87400)"
+  },
+  {
+    "empId": 33150,
+    "empName": "Olene Pope",
+    "designation": "Member of Technical Staff-2",
+    "email": "olene.pope@gmail.com",
+    "phone": 9878765676,
+    "manager": "Brynn Haris (12312)"
+  },
+  {
+    "empId": 41916,
+    "empName": "Ellen Zhang",
+    "designation": "Member of Technical Staff-2",
+    "email": "ellen.zhang@gmail.com",
+    "phone": 9878767654,
+    "manager": "Brynn Haris (12312)"
+  },
+  {
+    "empId": 62879,
+    "empName": "Sibyl Drew",
+    "designation": "Member of Technical Staff-2",
+    "email": "sibyl.drew@gmail.com",
+    "phone": 9865654543,
+    "manager": "Brynn Haris (12312)"
+  },
+  {
+    "empId": 85533,
+    "empName": "Graham Bell",
+    "designation": "Member of Technical Staff-2",
+    "email": "graham.bell@gmail.com",
+    "phone": 9867565764,
+    "manager": "Brynn Haris (12312)"
+  }
+]

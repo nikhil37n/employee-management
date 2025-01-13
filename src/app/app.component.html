@@ -1,0 +1,47 @@
+<div class="main-container">
+  <header class="header-6">
+    <div class="branding">
+      <a href="javascript://" class="nav-link">
+        <cds-icon
+          shape="internet-of-things"
+          size="25"
+          status="neutral"
+        ></cds-icon>
+        <span class="title">Hierarchical Organization Chart</span>
+      </a>
+    </div>
+  </header>
+  <div class="">
+    <div class="btn-banner">
+      <div class="btn-group">
+        <div class="radio btn">
+          <input
+            type="radio"
+            name="btn-group-demo-radios"
+            id="btn-demo-radio-1"
+            (change)="goToGraphView()"
+            checked
+          />
+          <label for="btn-demo-radio-1">
+            <cds-icon shape="users" [solid]="true"></cds-icon>
+            GRAPH VIEW
+          </label>
+        </div>
+        <div class="radio btn">
+          <input
+            type="radio"
+            name="btn-group-demo-radios"
+            id="btn-demo-radio-2"
+            (change)="goToGridView()"
+          />
+          <label for="btn-demo-radio-2">
+            <cds-icon shape="grid-view" [solid]="true"></cds-icon>
+            GRID VIEW
+          </label>
+        </div>
+      </div>
+    </div>
+    <app-banner></app-banner>
+    <router-outlet></router-outlet>
+  </div>
+</div>

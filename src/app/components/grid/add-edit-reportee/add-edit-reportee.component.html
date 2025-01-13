@@ -1,0 +1,123 @@
+<form [formGroup]="addEditReporteeForm">
+  <div class="mb10">
+    <clr-input-container *ngIf="!isEdit">
+      <label for="manager">Manager Name</label>
+      <input
+        class="pointer-events-none"
+        clrInput
+        type="text"
+        id="manager"
+        name="manager"
+        formControlName="manager"
+      />
+    </clr-input-container>
+
+    <clr-select-container *ngIf="isEdit">
+      <label for="manager">Manager Name</label>
+      <select
+        clrSelect
+        id="manager"
+        name="manager"
+        formControlName="manager"
+        required
+      >
+        <option *ngFor="let manager of managers" [value]="manager">
+          {{ manager }}
+        </option>
+      </select>
+      <clr-control-error>Select valid Manager!</clr-control-error>
+    </clr-select-container>
+  </div>
+
+  <div class="mb10">
+    <clr-input-container>
+      <label for="empName">Employee Name</label>
+      <input
+        clrInput
+        placeholder="Enter Employee Name"
+        type="text"
+        id="empName"
+        name="empName"
+        formControlName="empName"
+        required
+      />
+      <clr-control-error
+        *ngIf="addEditReporteeForm.get('empName')?.errors?.['required']"
+      >
+        Employee name is required.
+      </clr-control-error>
+      <clr-control-error
+        *ngIf="addEditReporteeForm.get('empName')?.errors?.['minlength']"
+        >Employee name must be at least
+        {{ addEditReporteeForm.get('empName')?.errors?.['minlength'].requiredLength }}
+        characters long.</clr-control-error
+      >
+      <clr-control-error
+        *ngIf="addEditReporteeForm.get('empName')?.errors?.['maxlength']"
+        >Employee name cannot exceed
+        {{ addEditReporteeForm.get('empName')?.errors?.['maxlength'].requiredLength }}
+        characters.</clr-control-error
+      >
+    </clr-input-container>
+  </div>
+
+  <div class="mb10">
+    <clr-select-container>
+      <label for="designation">Designation</label>
+      <select
+        clrSelect
+        id="designation"
+        name="designation"
+        formControlName="designation"
+        required
+      >
+        <option value="" disabled>Select Employee Designation</option>
+        <option *ngFor="let designation of designations" [value]="designation">
+          {{ designation }}
+        </option>
+      </select>
+      <clr-control-error>Select valid Designation!</clr-control-error>
+    </clr-select-container>
+  </div>
+
+  <div class="mb10">
+    <clr-input-container>
+      <label for="email">Email ID</label>
+      <input
+        clrInput
+        placeholder="Enter Email ID"
+        type="email"
+        id="email"
+        name="email"
+        formControlName="email"
+        required
+      />
+      <clr-control-error>Enter valid Email ID!</clr-control-error>
+    </clr-input-container>
+  </div>
+
+  <div class="mb10">
+    <clr-input-container>
+      <label for="phone">Phone Number</label>
+      <input
+        clrInput
+        placeholder="Enter Phone Number"
+        id="phone"
+        name="phone"
+        formControlName="phone"
+        type="number"
+        required
+      />
+      <clr-control-error
+        *ngIf="addEditReporteeForm.get('phone')?.errors?.['required']"
+      >
+        Phone number is required.
+      </clr-control-error>
+      <clr-control-error
+        *ngIf="addEditReporteeForm.get('phone')?.errors?.['invalidPhoneNumber']"
+      >
+        Phone number must be 10 digits.
+      </clr-control-error>
+    </clr-input-container>
+  </div>
+</form>

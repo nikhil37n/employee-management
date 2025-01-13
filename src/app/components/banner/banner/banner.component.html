@@ -1,0 +1,10 @@
+<div
+  *ngIf="bannerService.banner$ | async as banner"
+  class="alert alert-{{ banner.type }}"
+  role="alert"
+>
+  <div class="alert-item">
+    <cds-icon [attr.shape]="getIcon(banner.type)" solid></cds-icon>
+    <span>{{ banner.message }}</span>
+  </div>
+</div>

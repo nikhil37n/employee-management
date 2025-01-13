@@ -1,0 +1,8 @@
+.pointer-events-none {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+clr-input-container input[clrInput] {
+  width: 325px;
+}

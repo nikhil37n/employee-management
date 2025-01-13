@@ -1,0 +1,13 @@
+.pointer-events-none {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+clr-input-container input[clrInput],
+select {
+  width: 325px;
+}
+
+.mb10 {
+  margin-bottom: 10px;
+}

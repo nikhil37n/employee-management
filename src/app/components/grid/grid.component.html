@@ -1,0 +1,187 @@
+<div class="grid-view">
+  <clr-datagrid
+    *ngIf="employees"
+    [(clrDgSelected)]="selected"
+    [clrDgItemsTrackBy]="trackEmployeeItemById"
+  >
+    <clr-dg-column [clrDgField]="'empName'">Employee Name</clr-dg-column>
+    <clr-dg-column [clrDgField]="'empId'">Employee ID</clr-dg-column>
+    <clr-dg-column [clrDgField]="'designation'">Designation</clr-dg-column>
+    <clr-dg-column [clrDgField]="'email'">Email</clr-dg-column>
+    <clr-dg-column [clrDgField]="'phone'">Phone</clr-dg-column>
+    <clr-dg-column [clrDgField]="'manager'">Manager</clr-dg-column>
+    <clr-dg-placeholder>No Employees found</clr-dg-placeholder>
+    <clr-dg-row *clrDgItems="let employee of employees" [clrDgItem]="employee">
+      <clr-dg-action-overflow>
+        <button class="action-item" (click)="onAdd(employee)">
+          <cds-icon shape="add-text"></cds-icon> Add Reportee
+        </button>
+        <button class="action-item" (click)="onEdit(employee)">
+          <cds-icon shape="pencil"></cds-icon> Edit Details
+        </button>
+        <button class="action-item" (click)="onDelete(employee)">
+          <cds-icon shape="ban"></cds-icon> Delete Employee
+        </button>
+        <button class="action-item" (click)="onChangeReporting(employee)">
+          <cds-icon shape="switch"></cds-icon> Change Reporting Line
+        </button>
+      </clr-dg-action-overflow>
+      <clr-dg-cell>{{ employee.empName }}</clr-dg-cell>
+      <clr-dg-cell>{{ employee.empId }}</clr-dg-cell>
+      <clr-dg-cell>{{ employee.designation }}</clr-dg-cell>
+      <clr-dg-cell>{{ employee.email }}</clr-dg-cell>
+      <clr-dg-cell>{{ employee.phone }}</clr-dg-cell>
+      <clr-dg-cell>{{ employee.manager }}</clr-dg-cell>
+    </clr-dg-row>
+
+    <clr-dg-footer>
+      {{ pagination.firstItem + 1 }} - {{ pagination.lastItem + 1 }} of
+      {{ pagination.totalItems }} employees
+      <clr-dg-pagination
+        #pagination
+        [clrDgPageSize]="currentPageSize"
+      ></clr-dg-pagination>
+    </clr-dg-footer>
+  </clr-datagrid>
+</div>
+
+<!-- Add Reportee Modal -->
+<clr-modal
+  [(clrModalOpen)]="isAddModalOpen"
+  [clrModalStaticBackdrop]="false"
+  (clrModalOpenChange)="onModalClose()"
+>
+  <div class="modal-title">Add New Reportee</div>
+  <div class="modal-body">
+    <span>
+      Add a new employee who will report directly to this person. Provide
+      details like name, designation, email and phone to create their profile in
+      the organization chart.
+    </span>
+
+    <div class="clr-form clr-form-horizontal">
+      <app-add-edit-reportee
+        #addReportee
+        [isEdit]="isEditModalOpen"
+        [designations]="designations"
+        (isFormValid)="isFormValid($event)"
+      ></app-add-edit-reportee>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="onModalClose()">
+      CANCEL
+    </button>
+    <button
+      type="button"
+      class="btn btn-primary"
+      (click)="handleOnAddReportee()"
+      [disabled]="!isValid"
+    >
+      ADD REPORTEE
+    </button>
+  </div>
+</clr-modal>
+
+<!-- Edit Employee Modal -->
+<clr-modal
+  [(clrModalOpen)]="isEditModalOpen"
+  [clrModalStaticBackdrop]="false"
+  (clrModalOpenChange)="onModalClose()"
+>
+  <div class="modal-title">Edit Employee</div>
+  <div class="modal-body">
+    <span>
+      You can edit employee details like manager, name, designation, email and
+      phone to update their profile in the organization chart.
+    </span>
+
+    <div class="clr-form clr-form-horizontal">
+      <app-add-edit-reportee
+        #editEmployee
+        [isEdit]="isEditModalOpen"
+        [designations]="designations"
+        [managers]="managers"
+        (isFormValid)="isFormValid($event)"
+      ></app-add-edit-reportee>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="onModalClose()">
+      CANCEL
+    </button>
+    <button
+      type="button"
+      class="btn btn-primary"
+      (click)="handleOnEditEmployee()"
+      [disabled]="!isValid"
+    >
+      Update Employee
+    </button>
+  </div>
+</clr-modal>
+
+<!-- Change Reporting Line Modal -->
+<clr-modal
+  [(clrModalOpen)]="isChangeReportingModalOpen"
+  [clrModalStaticBackdrop]="false"
+  (clrModalCloseChange)="onModalClose()"
+>
+  <div class="modal-title">Change Employee Reporting Line</div>
+  <div class="modal-body">
+    <span>
+      Reassign this employee to report to a new manager. Select the desired
+      manager from the available options to update the reporting hierarchy in
+      the organization chart.
+    </span>
+
+    <div class="clr-form clr-form-horizontal">
+      <app-change-reporting-line
+        #changeReportingLine
+        [managers]="managers"
+        (isFormValid)="isFormValid($event)"
+      ></app-change-reporting-line>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="onModalClose()">
+      CANCEL
+    </button>
+    <button
+      type="button"
+      class="btn btn-primary"
+      (click)="handleOnChangeReporting()"
+      [disabled]="!isValid"
+    >
+      CHANGE REPORTING
+    </button>
+  </div>
+</clr-modal>
+
+<!-- Delete Employee Modal -->
+<clr-modal
+  [(clrModalOpen)]="isDeleteModalOpen"
+  [clrModalStaticBackdrop]="false"
+  (clrModalCloseChange)="onModalClose()"
+>
+  <div class="modal-title">Delete Employee</div>
+  <div class="modal-body">
+    <span>
+      Deleteting this employee will reassign all there direct reportees to the
+      employee's manager. Confirm this action to remove the employee from the
+      organization chart and update the reporting hierarchy accordingly.
+    </span>
+
+    <div class="clr-form clr-form-horizontal">
+      <app-delete-employee #deleteEmployee></app-delete-employee>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="onModalClose()">
+      CANCEL
+    </button>
+    <button type="button" class="btn btn-danger" (click)="handleOnDelete()">
+      Delete
+    </button>
+  </div>
+</clr-modal>
