@@ -32,6 +32,7 @@ import { EmployeeReducer } from './store/Employee.Reducer';
 import { EmployeeEffects } from './store/Employee.Effects';
 import { BannerComponent } from './components/banner/banner/banner.component';
 import { D3OrgChartComponent } from './components/d3-org-chart/d3-org-chart.component';
+import { BannerService } from './service/banner.service';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,7 @@ import { D3OrgChartComponent } from './components/d3-org-chart/d3-org-chart.comp
       connectInZone: true,
     }),
   ],
-  providers: [Inventory],
+  providers: [Inventory, BannerService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

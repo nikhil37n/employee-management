@@ -13,7 +13,6 @@ import {
   updateemployee,
 } from 'src/app/store/Employee.Action';
 import { getemployeelist } from 'src/app/store/Employee.Selector';
-import { BannerService } from 'src/app/service/banner.service';
 import {
   ClarityIcons,
   addTextIcon,
@@ -56,11 +55,7 @@ export class GridComponent implements OnInit {
   private uniqueNumbers: Set<number> = new Set();
   private employee: Employee | undefined;
 
-  constructor(
-    private inventory: Inventory,
-    private store: Store,
-    private bannerService: BannerService
-  ) {
+  constructor(private inventory: Inventory, private store: Store) {
     this.reset();
   }
 
@@ -158,7 +153,6 @@ export class GridComponent implements OnInit {
       };
       this.store.dispatch(addemployee({ inputdata: _obj }));
     }
-    this.bannerService.showBanner('Reportee added successfully!', 'success');
     this.isAddModalOpen = false;
     this.onModalClose();
     this.loadEmployees();
@@ -177,7 +171,6 @@ export class GridComponent implements OnInit {
       };
       this.store.dispatch(updateemployee({ inputdata: _obj }));
     }
-    this.bannerService.showBanner('Employee updated successfully!', 'success');
     this.isEditModalOpen = false;
     this.onModalClose();
     this.loadEmployees();
@@ -192,10 +185,6 @@ export class GridComponent implements OnInit {
       } as any;
       this.store.dispatch(changereporting({ inputdata: _obj }));
     }
-    this.bannerService.showBanner(
-      'Reporting line manager changed successfully!',
-      'success'
-    );
     this.isChangeReportingModalOpen = false;
     this.onModalClose();
     this.loadEmployees();
@@ -215,7 +204,6 @@ export class GridComponent implements OnInit {
         parentManager: recordToDelete[0].manager,
       })
     );
-    this.bannerService.showBanner('Employee deleted successfully!', 'success');
     this.isDeleteModalOpen = false;
     this.onModalClose();
     this.loadEmployees();

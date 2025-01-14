@@ -56,9 +56,9 @@ export class EmployeeEffects {
           switchMap((data) => {
             return of(addemployeesuccess({ inputdata: action.inputdata }));
           }),
-          catchError((_error) =>
-            of(addemployeefail({ errormessage: _error.message }))
-          )
+          catchError((_error) => {
+            return of(addemployeefail({ errormessage: _error.message }));
+          })
         );
       })
     )

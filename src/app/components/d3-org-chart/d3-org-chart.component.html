@@ -1,1 +1,200 @@
 <div #chartContainer id="chartContainer" style="height: 1200px"></div>
+
+<!-- Open Actions Modal -->
+<clr-modal
+  [(clrModalOpen)]="openActionsModal"
+  [clrModalStaticBackdrop]="false"
+  (clrModalOpenChange)="onModalClose()"
+>
+  <div class="modal-title">
+    <div>
+      <span class="lg-title">{{ employee ? employee["name"] : "-" }}</span>
+      <div class="sm-title">
+        {{ employee ? employee["positionName"] : "-" }}
+      </div>
+      <div class="sm-title">{{ employee ? employee.email : "-" }}</div>
+      <div class="sm-title">{{ employee ? employee.phone : "-" }}</div>
+    </div>
+  </div>
+  <div class="modal-body">
+    <span
+      >You can perform below actions on the selected record. Please choose
+      action to proceed ahead.</span
+    >
+  </div>
+  <div class="modal-footer">
+    <a
+      class="btn-outline btn-link"
+      href="#"
+      href="javascript:void(0)"
+      (click)="openAddReporteeModal()"
+    >
+      <clr-icon shape="arrow" size="16"></clr-icon> Add Reportee
+    </a>
+    <a
+      class="btn-outline btn-link"
+      href="#"
+      href="javascript:void(0)"
+      (click)="openEditEmployeeModal()"
+    >
+      <clr-icon shape="arrow" size="16"></clr-icon> Edit Details
+    </a>
+    <a
+      class="btn-outline btn-link"
+      href="#"
+      href="javascript:void(0)"
+      (click)="openDeleteEmployeeModal()"
+    >
+      <clr-icon shape="arrow" size="16"></clr-icon> Delete Employee
+    </a>
+    <a
+      class="btn-outline btn-link"
+      href="#"
+      href="javascript:void(0)"
+      (click)="openChangeReportingModal()"
+    >
+      <clr-icon shape="arrow" size="16"></clr-icon> Change Reporting Line
+    </a>
+  </div>
+</clr-modal>
+
+<!-- Add Reportee Modal -->
+<clr-modal
+  [(clrModalOpen)]="isAddModalOpen"
+  [clrModalStaticBackdrop]="false"
+  (clrModalOpenChange)="onModalClose()"
+>
+  <div class="modal-title">Add New Reportee</div>
+  <div class="modal-body">
+    <span>
+      Add a new employee who will report directly to this person. Provide
+      details like name, designation, email and phone to create their profile in
+      the organization chart.
+    </span>
+
+    <div class="clr-form clr-form-horizontal">
+      <app-add-edit-reportee
+        #addReportee
+        [isEdit]="isEditModalOpen"
+        [designations]="designations"
+        (isFormValid)="isFormValid($event)"
+      ></app-add-edit-reportee>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="onModalClose()">
+      CANCEL
+    </button>
+    <button
+      type="button"
+      class="btn btn-primary"
+      (click)="handleOnAddReportee()"
+      [disabled]="!isValid"
+    >
+      ADD REPORTEE
+    </button>
+  </div>
+</clr-modal>
+
+<!-- Edit Employee Modal -->
+<clr-modal
+  [(clrModalOpen)]="isEditModalOpen"
+  [clrModalStaticBackdrop]="false"
+  (clrModalOpenChange)="onModalClose()"
+>
+  <div class="modal-title">Edit Employee</div>
+  <div class="modal-body">
+    <span>
+      You can edit employee details like manager, name, designation, email and
+      phone to update their profile in the organization chart.
+    </span>
+
+    <div class="clr-form clr-form-horizontal">
+      <app-add-edit-reportee
+        #editEmployee
+        [isEdit]="isEditModalOpen"
+        [designations]="designations"
+        [managers]="managers"
+        (isFormValid)="isFormValid($event)"
+      ></app-add-edit-reportee>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="onModalClose()">
+      CANCEL
+    </button>
+    <button
+      type="button"
+      class="btn btn-primary"
+      (click)="handleOnEditEmployee()"
+      [disabled]="!isValid"
+    >
+      Update Employee
+    </button>
+  </div>
+</clr-modal>
+
+<!-- Change Reporting Line Modal -->
+<clr-modal
+  [(clrModalOpen)]="isChangeReportingModalOpen"
+  [clrModalStaticBackdrop]="false"
+  (clrModalCloseChange)="onModalClose()"
+>
+  <div class="modal-title">Change Employee Reporting Line</div>
+  <div class="modal-body">
+    <span>
+      Reassign this employee to report to a new manager. Select the desired
+      manager from the available options to update the reporting hierarchy in
+      the organization chart.
+    </span>
+
+    <div class="clr-form clr-form-horizontal">
+      <app-change-reporting-line
+        #changeReportingLine
+        [managers]="managers"
+        (isFormValid)="isFormValid($event)"
+      ></app-change-reporting-line>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="onModalClose()">
+      CANCEL
+    </button>
+    <button
+      type="button"
+      class="btn btn-primary"
+      (click)="handleOnChangeReporting()"
+      [disabled]="!isValid"
+    >
+      CHANGE REPORTING
+    </button>
+  </div>
+</clr-modal>
+
+<!-- Delete Employee Modal -->
+<clr-modal
+  [(clrModalOpen)]="isDeleteModalOpen"
+  [clrModalStaticBackdrop]="false"
+  (clrModalCloseChange)="onModalClose()"
+>
+  <div class="modal-title">Delete Employee</div>
+  <div class="modal-body">
+    <span>
+      Deleteting this employee will reassign all there direct reportees to the
+      employee's manager. Confirm this action to remove the employee from the
+      organization chart and update the reporting hierarchy accordingly.
+    </span>
+
+    <div class="clr-form clr-form-horizontal">
+      <app-delete-employee #deleteEmployee></app-delete-employee>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="onModalClose()">
+      CANCEL
+    </button>
+    <button type="button" class="btn btn-danger" (click)="handleOnDelete()">
+      Delete
+    </button>
+  </div>
+</clr-modal>

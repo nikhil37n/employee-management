@@ -1,26 +1,6 @@
-# Employee Management
+# EmployeeManagement
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.16.
-
-Used d3.js to form org-chart with below feature - 
-- Zoom In/Out
-- Collapse/ Expand
-- Dynamic graph generation
-
-Features - 
-  1. Graphical and Grid/Table Views
-  2. CRUD Operations 
-      1. Add Report
-      2. Edit Employee Details
-      3. Delete Employee
-      4. Change Reporting Line    
-  3. List View
-
-Stack - 
-1. Used local storage to store data
-2. Used Ngrx for state management with Anular 16
-3. Used d3.js for building org chart
-
 
 ## Development server
 

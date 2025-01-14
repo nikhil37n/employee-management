@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import * as d3 from 'd3';
+import { Store } from '@ngrx/store';
+import { Employee } from 'src/app/inventory/user';
+import { loademployee } from 'src/app/store/Employee.Action';
+import { getemployeelist } from 'src/app/store/Employee.Selector';
 
 @Component({
   selector: 'app-graph',
@@ -7,11 +10,21 @@ import * as d3 from 'd3';
   styleUrls: ['./graph.component.css'],
 })
 export class GraphComponent implements OnInit {
-  public data = [];
+  public employees!: Employee[];
+  public data: Employee[] = [];
+
+  constructor(private store: Store) {}
 
   ngOnInit() {
-    d3.csv('/assets/convertcsv.csv').then((data: any) => {
-      this.data = data;
+    this.loadEmployees();
+  }
+
+  loadEmployees() {
+    this.store.dispatch(loademployee());
+    this.store.select(getemployeelist).subscribe((item) => {
+      setTimeout(() => {
+        this.employees = item;
+      }, 0);
     });
   }
 }

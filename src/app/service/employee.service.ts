@@ -28,6 +28,7 @@ export class EmployeeService {
     if (!existingEntries.includes(data)) {
       existingEntries.push(data);
       localStorage.setItem(this.storageKey, JSON.stringify(existingEntries));
+      this.bannerService.showBanner('Reportee added successfully!', 'success');
     } else {
       this.bannerService.showBanner(data + ' already exists', 'warning');
     }
@@ -54,6 +55,7 @@ export class EmployeeService {
     );
     // Update storage
     this.updateStorageData(existingEntries);
+    this.bannerService.showBanner('Employee updated successfully!', 'success');
     return of();
   }
 
@@ -73,6 +75,10 @@ export class EmployeeService {
     );
     // Update storage
     this.updateStorageData(existingEntries);
+    this.bannerService.showBanner(
+      'Reporting line manager changed successfully!',
+      'success'
+    );
     return of();
   }
 
@@ -92,6 +98,7 @@ export class EmployeeService {
     );
     // Update storage
     this.updateStorageData(existingEntries);
+    this.bannerService.showBanner('Employee deleted successfully!', 'success');
     return of();
   }
 
